@@ -5,21 +5,21 @@ const url2 = process.argv[4];
 var urlDataCollection = [];
 var urlComplete = [false, false, false]
 
-function fetchData(url, id){
-    http.get(url, function(response){
-        let dataCollector = "";
-        response.setEncoding('utf8').on('data', function(data){
+function fetchData(url, id) {
+    http.get(url, function (response) {
+        let dataCollector = '';
+        response.setEncoding('utf8').on('data', function (data) {
             dataCollector += data;
         });
-        response.on('end', function(){
+        response.on('end', function () {
             urlDataCollection[id] = dataCollector;
             urlComplete[id] = true;
             //console.log("Success" + id)
-            if(urlComplete.every(status => status === true)){
+            if (urlComplete.every(status => status === true)) {
                 urlDataCollection.forEach(data => console.log(data));
             } //else {console.log("not finished yet");}
         });
-    })
+    });
 }
 fetchData(url0, 0);
 fetchData(url1, 1);
