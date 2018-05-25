@@ -1,27 +1,9 @@
-/*******************************************************************
- * 
-********************************************************************/
-// Create the event.
-var event = document.createEvent('Event');
-
-// Define that the event name is 'build'.
-event.initEvent('build', true, true);
-
-// Listen for the event.
-elem.addEventListener('build', function (e) {
-  // e.target matches elem
-}, false);
-
-// target can be any Element or other EventTarget.
-elem.dispatchEvent(event);
-
-/*******************************************************************
- * 
-********************************************************************/
-var event = new Event('build');
-
-// Listen for the event.
-elem.addEventListener('build', function (e) { //... }, false);
-
-// Dispatch the event.
-elem.dispatchEvent(event);
+var http = require('http');
+var port = process.argv[2];
+http.createServer(function (request, response) {
+    response.writeHead(200, {
+        'Content-Type': 'text/html'
+    });
+    response.write(request.url);
+    response.end();
+}).listen(port);

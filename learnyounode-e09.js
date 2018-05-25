@@ -3,7 +3,7 @@ const url0 = process.argv[2];
 const url1 = process.argv[3];
 const url2 = process.argv[4];
 var urlDataCollection = [];
-var urlComplete = [false, false, false]
+var urlComplete = [false, false, false];
 
 function fetchData(url, id) {
     http.get(url, function (response) {
