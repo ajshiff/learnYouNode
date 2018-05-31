@@ -1,6 +1,11 @@
 const http = require('http');
-const fs = require('fs');
-const text = process.argv[2];
+const map = require('through2-map');
+const port = process.argv[2];
 
-var idk = fs.createReadStream(text);
-console.log(idk);
+http.createServer(function (request, response) {
+    //if (request.method = 'POST') {
+    request.pipe(map(function (chunk) {
+        return chunk.toString().toUpperCase();
+    })).pipe(response);
+    //}
+}).listen(port);
