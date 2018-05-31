@@ -7,6 +7,7 @@ http.createServer(function (request, response) {
         request.pipe(map(function (chunk) {
             return chunk.toString().toUpperCase();
         })).pipe(response);
+        //request.pipe().pipe(response);
     }
 
 
