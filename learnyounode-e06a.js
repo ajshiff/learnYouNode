@@ -12,9 +12,7 @@ if (process.argv[3]) {
 } else {
     return console.error('Enter an Extension.');
 }
-if (printFiles) {
-    console.log(printFiles)
-} else {
+if (!printFiles) {
     console.log("Modual Failed");
 }
 
