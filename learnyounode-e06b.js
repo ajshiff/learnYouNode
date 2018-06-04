@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 /*
 module.exports =  
 {
@@ -12,14 +13,20 @@ module.exports =
     }
 };
 */
-module.exports = function (directory, extension, callbackFunction){
-    fs.readdir(directory, 'utf8', function(error, data){
-        if (error) 
+module.exports = function (directory, extension, callbackFunction) {
+    fs.readdir(directory, 'utf8', function (error, data) {
+        if (error)
             return callbackFunction(error);
         else
-            callbackFunction(null, data);
-        //console.log(data);
-        //return data;
-        return data.length;
+            var dataMatch = data.reduce((acc, file) => {
+                //console.log(acc);
+                //console.log(file);
+                if (path.extname(file) === '.' + extension) {
+                    acc.push(file);
+                }
+                return acc;
+            }, []);
+        //console.log(dataMatch);
+        return callbackFunction(null, dataMatch);
     });
 }
