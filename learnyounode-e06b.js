@@ -17,9 +17,9 @@ module.exports = function (directory, extension, callbackFunction){
         if (error) 
             return callbackFunction(error);
         else
-            callbackFunction(error, data);
+            callbackFunction(null, data);
         //console.log(data);
         //return data;
-        //return data.length;
+        return data.length;
     });
 }
